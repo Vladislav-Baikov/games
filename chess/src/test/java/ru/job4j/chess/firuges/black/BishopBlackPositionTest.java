@@ -3,6 +3,7 @@ package ru.job4j.chess.firuges.black;
 import org.junit.Assert;
 import org.junit.Test;
 import ru.job4j.chess.FigureNotFoundException;
+import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.Logic;
 import ru.job4j.chess.OccupiedCellException;
 import ru.job4j.chess.firuges.Cell;
@@ -55,5 +56,15 @@ public class BishopBlackPositionTest {
         logic.add(bishopBlackOne);
         logic.add(bishopBlackTwo);
         logic.move(sourceOne, dest);
+    }
+
+    @Test (expected = ImpossibleMoveException.class)
+    public void testMoveImpossibleMoveException() throws FigureNotFoundException, OccupiedCellException {
+        Cell source = Cell.A6;
+        Cell dest = Cell.B6;
+        BishopBlack bishopBlack = new BishopBlack(source);
+        Logic logic = new Logic();
+        logic.add(bishopBlack);
+        logic.move(source, dest);
     }
 }
